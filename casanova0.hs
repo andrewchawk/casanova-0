@@ -5,36 +5,36 @@ data Number = NumberInt Integer
             | NumberE
             | NumberRatio (Ratio Integer)
             | Ap Fun Number
-	    deriving (
-	      Show, Eq
-	    )
+            deriving (
+              Show, Eq
+            )
 
 data Fun = Diff Fun
          | Expt Number
          | InvExpt Number
-	 | Const Number
-	 | Add Number
-	 | Integrate Fun
-	 | Compose Fun Fun
-	 | Mul Number
-	 | Div Number -- \m n -> m / n
---	 | If (Number -> Bool) Number Number
-	 | Negate
-	 | Ceil
-	 | Floor
-	 | Sin
-	 | Cos
-	 | Tan
-	 | Csc
-	 | Id
+         | Const Number
+         | Add Number
+         | Integrate Fun
+         | Compose Fun Fun
+         | Mul Number
+         | Div Number -- \m n -> m / n
+--         | If (Number -> Bool) Number Number
+         | Negate
+         | Ceil
+         | Floor
+         | Sin
+         | Cos
+         | Tan
+         | Csc
+         | Id
          | Log Number
-	 | FSum Fun Fun -- \g f x -> gx + g x
-	 | FMul Fun Fun -- \g f x -> g x * f x
-	 | FExp Fun Fun -- \g f x -> g x ^ f x
+         | FSum Fun Fun -- \g f x -> gx + g x
+         | FMul Fun Fun -- \g f x -> g x * f x
+         | FExp Fun Fun -- \g f x -> g x ^ f x
          | FDiv Fun Fun -- \g f x -> g x / f x
-	 deriving (
-	   Show, Eq
-	 )
+         deriving (
+           Show, Eq
+         )
 
 s :: Fun -> Fun
 s (Compose (Expt b) (Expt a)) = Expt $ Ap (Mul b) a
