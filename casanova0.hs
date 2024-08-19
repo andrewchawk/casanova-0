@@ -64,10 +64,10 @@ s2 f = if f' == f then f else s2 f'
   f' = s f
 
 sExp :: Number -> Number
-sExp (NumberInt n) = NumberInt n;
-sExp (NumberMcDouble n) = NumberMcDouble n;
-sExp (NumberRatio n) = NumberRatio n;
-sExp NumberE = NumberE;
+sExp (NumberInt n) = NumberInt n
+sExp (NumberMcDouble n) = NumberMcDouble n
+sExp (NumberRatio n) = NumberRatio n
+sExp NumberE = NumberE
 sExp (Ap (Add (NumberInt m)) (NumberInt n)) = NumberInt $ n + m
 sExp (Ap (Mul (NumberInt m)) (NumberInt n)) = NumberInt $ m * n
 sExp (Ap (Expt (NumberInt m)) (NumberInt n)) = NumberInt $ n ^ m
