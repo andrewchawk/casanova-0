@@ -39,6 +39,7 @@ data Fun = Diff Fun
 s :: Fun -> Fun
 s (Compose (Expt b) (Expt a)) = Expt $ Ap (Mul b) a
 s (Compose Id f) = s f
+s (Compose f Id) = s f
 s (Compose f g) = Compose (s f) (s g)
 s (Diff (Log NumberE)) = Id
 s (Diff (InvExpt NumberE)) = InvExpt NumberE
@@ -51,11 +52,16 @@ s (Diff (FSum f g)) = s $ FSum (Diff f) $ Diff g
 s (Diff (FMul f g)) = s $ FSum (FMul (Diff f) g) $ FMul (Diff g) f
 s (Diff (FExp f g)) = s $ Diff $ Compose (InvExpt NumberE) $ FMul g $ Compose (Log NumberE) f
 s (Diff (FDiv f g)) = s $ FDiv (FSum (FMul (Diff f) g) (FMul f $ Diff g)) (Compose (Expt $ NumberInt 2) g)
+s (Expt (NumberInt 1)) = Id
 s (Diff x) = Diff $ s x
 s (FMul g f) = FMul (s g) (s f)
 s (FSum g f) = FSum (s g) (s f)
 s (FExp g f) = FExp (s g) (s f)
 s (FDiv g f) = FDiv (s g) (s f)
+s (Add n) = Add $ sExp n
+s (Mul n) = Mul $ sExp n
+s (Div n) = Div $ sExp n
+s (Expt n) = Expt $ sExp n
 s x = x
 
 s2 :: Fun -> Fun
