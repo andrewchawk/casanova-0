@@ -28,7 +28,7 @@ data Fun = Diff Fun
          | Csc
          | Id
          | Log Number
-         | FSum Fun Fun -- \g f x -> gx + g x
+         | FSum Fun Fun -- \g f x -> g x + f x
          | FMul Fun Fun -- \g f x -> g x * f x
          | FExp Fun Fun -- \g f x -> g x ^ f x
          | FDiv Fun Fun -- \g f x -> g x / f x
